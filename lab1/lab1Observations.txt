@@ -1,0 +1,16 @@
+Manpreet Sokhi
+COEN 146 Lab 1 notes
+
+Step 3
+./Lab1_s1e caused a segmentation fault (core dumped)
+
+Step 4
+./Lab1_s1e 3000 creates child and parent process with a delay of 3000 microseconds
+./Lab1_s1e 500 does the same but with a shorter delay of 500 microseconds
+./Lab1_s1e 5000 also creates child and parent processes but with a longer delay of 5000 microseconds
+
+Step 5 - used pthread_create instead of fork
+gcc -pthread -o Lab1_s5e Lab1_s5.c
+./Lab1_s5e 3000
+./Lab1_s5e 500
+./Lab1_s5e 5000

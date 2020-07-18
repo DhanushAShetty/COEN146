@@ -1,0 +1,108 @@
+Manpreet Sokhi
+COEN 146 Lab 2 notes
+
+Part 2
+Step 2
+
+a. netstat -  displays network connections for TCP, routing tables, interface stats, masquerade connections, and multicast memberships.
+
+b. ifconfig - configure network interface parameters and view current state of network interfaces. Can also set the IP address and enable or desable interface.
+
+c. hostname - displays DNS hostname and can set hostname for system.
+
+d. ping - used to test the reachability of a host on IP network. Continually sends packets with an echo response and displays RTT and percentage of packet loss. 
+
+e. traceroute - displays the route and measuring transit delay of packets across IP network.
+
+f. telnet - allows user to make connection with a given host and port.
+
+g. host/dig - performs DNS lookup and dig gives detailed information about lookup.
+
+h. route - manipulates networking routing tables.
+
+i. arp - displays and modifies the Internet-to-Ethernet address translation tables used by the address resolution protocol.
+
+Step 3
+
+Packet size of 32 bytes
+ping -s 32 www.google.com
+0% packet loss
+rtt min/avg/max/mdev = 2.360/2.414/2.486/0.064 ms
+
+ping -s 32 www.taiwanmobile.com
+0% packet loss
+rtt min/avg/max/mdev = 138.501/139.193/141.082/0.755 ms
+
+ping -s 32 www.home.cern
+0% packet loss
+rtt min/avg/max/mdev = 178.108/178.279/178.746/0.376 ms
+
+Packet size of 1048 bytes
+ping -s 1048 www.google.com
+0% packet loss
+rtt min/avg/max/mdev = 2.335/2.402/2.646/0.101 ms
+
+ping -s 1048 www.taiwanmobile.com
+71 packets transmitted, 0 received, 100% packet loss, time 70000ms
+did not get rtt
+
+ping -s 1048 www.home.cern
+0% packet loss
+rtt min/avg/max/mdev = 178.268/178.410/179.140/0.235 ms
+
+
+For North America and Europe the packet loss for 32 bytes and 1048 bytes stayed constant at 0%. However, the Asian site showed a huge difference in that with 32 bytes there was 0% packet loss, but for 1048 bytes there was 100% packet loss. This means that although 71 packets were transmitted, 0 were received.  
+
+When looking at the rtt statistics for the North American we see that with 32 byte packets the average time is 2.414 ms and the mdev (standard deviation) we see 0.064 ms. While with 1048 byte packets, we see the average time is 2.402 ms and the standard deviation is 0.101 ms. I was a bit surprised by the fact that the Google servers were able to shed 0.01 ms when dealing with the larger packet size. It was expected that the standard deviation increased as the packet size increased. The Asian site did not complete for the 1048 byte size packets. The rtt statistics for the European site at 32 byte size packets were 178.279 ms for the average and 0.376 ms for the standard deviation. The values at 1048 byte size packets were 178.410 ms for the average and 0.235 ms for the standard deviation. I had expected the average rtt time to go up at the size of the packet increased, but found it interesting that the standard deviation fell by 0.141 ms.
+
+Step 5
+part A
+telnet gaia.cs.umass.edu 80 opens the console connections to the UMass website.
+
+part B
+GET /kurose_ross/interactive/index.php HTTP/1.1
+Host: gaia.cs.umass.edu
+shows the HTML code of the website.
+
+part C
+The file retrieved is index.php
+The client is running version 1.0
+CSS for the text and immages
+
+Step 6
+[msokhi@linux11107 lab2]$ telnet www.taiwanmobile.com 3389
+Trying 124.29.139.21...
+Connected to www.taiwanmobile.com.
+Escape character is '^]'.
+^CConnection closed by foreign host.
+
+[msokhi@linux11107 lab2]$ telnet www.google.com 3389
+Trying 172.217.164.100...
+Connected to www.google.com.
+Escape character is '^]'.
+^CConnection closed by foreign host.
+
+[msokhi@linux11107 lab2]$
+[msokhi@linux11107 lab2]$ telnet www.home.cern 3389
+Trying 188.184.37.219...
+Connected to www.home.cern.
+Escape character is '^]'.
+^CConnection closed by foreign host.
+
+[msokhi@linux11107 lab2]$ telnet www.home.cern 80
+Trying 188.184.37.219...
+Connected to www.home.cern.
+Escape character is '^]'.
+^CConnection closed by foreign host.
+
+[msokhi@linux11107 lab2]$ telnet www.google.com 80
+Trying 172.217.164.100...
+Connected to www.google.com.
+Escape character is '^]'.
+^C
+Connection closed by foreign host.
+
+[msokhi@linux11107 lab2]$ telnet www.taiwanmobile.com 80
+Trying 124.29.139.21...
+Connected to www.taiwanmobile.com.
+Escape character is '^]'.
